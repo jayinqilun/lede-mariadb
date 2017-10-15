@@ -52,7 +52,7 @@ echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.con
 ./scripts/feeds update -a -p mariadb
 ./scripts/feeds install mariadb
 
-make package/feeds/mariadb/mariadb/{clean,prepare,compile} V=s
+make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
 
 ```
 
