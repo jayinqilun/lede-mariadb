@@ -35,6 +35,8 @@ Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link D
 packages/feeds/mariadb/mariadb
 ```
 
+# Build
+
 ```bash
 echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 
