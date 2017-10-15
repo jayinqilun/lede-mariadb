@@ -8,7 +8,7 @@ SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 SERVICE_STOP_TIME=9
 
-DIR="/var/lib/mysql"
+DATA="/var/lib/mysql"
 
 error() {
     echo "${initscript}:" "$@" 1>&2
