@@ -30,6 +30,18 @@ https://nodejs.org/en/download/package-manager/
 [//]: #@corifeus-header:end
 # LEDE-MARIADB 5.5.57
 
+## The feed
+
+```text
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
+```
+
+```text
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
+```
+
+## The info
+
 Your built package:
   
 * Linksys WRT ARM 
