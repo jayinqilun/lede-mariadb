@@ -1,43 +1,12 @@
-[//]: #@corifeus-header
-
-  [![Build Status](https://travis-ci.org/patrikx3/lede-redis.svg?branch=master)](https://travis-ci.org/patrikx3/lede-redis)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/lede-redis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-redis/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/lede-redis/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-redis/?branch=master) 
-
----
-
- 
-# The LEDE Stable Redis package
-
-This is an open source project. Just code.
-
-### Node Version Requirement 
-``` 
->=7.8.0 
-```  
-   
-### Built on Node 
-``` 
-v8.7.0
-```   
-   
-The ```async``` and ```await``` keywords are required.
-
-Install NodeJs:    
-https://nodejs.org/en/download/package-manager/    
-
-# Description  
-
-                        
-[//]: #@corifeus-header:end
-
-# LEDE-REDIS 4.0.2
+# LEDE-MARIADB 5.5.57
 
 Your built package:
   
-* Like Linksys WRT ARM ```atomic instructions```
-  * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/redis/  
+* Linksys WRT ARM 
+  * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb/  
 
-* Like D-Link RAMIPS ```pthreads```
-  * https://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/redis/
+* Like D-Link DIR 860L B1 RAMIPS 
+  * https://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb/
 
 
 ## The router service
@@ -45,7 +14,7 @@ Your built package:
 Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia), of course it includes ```init.d``` service as well.
 
 ```bash
-/etc/init.d/redis stop|start
+/etc/init.d/mariadb stop|start
 ```
 
 ## Bulding
@@ -53,84 +22,23 @@ Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/led
 ### It is very important so that Makefile is a TAB instead 8 spaces!   
 
 This is based on:
-https://github.com/chrisber/openwrt-ipkg-redis and https://github.com/pdf/openwrt-14.07-x86_64-packages/tree/master/net/redis .
+https://github.com/openwrt/packages/pull/4221 .
 
-It will be all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia) (renamed from LEDE-NODE) named firmware and packages.
+It will be all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia).
 
 ### CPU type
-Right now, I only tested on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link RAMIPS since it is 4.0.2
+Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link DIR 860l B1 RAMIPS since it is 5.5.
 
-### Patch 4.0.2 or building as a package
-
-The location:  
+# The location:  
   
 ```text
-packages/feeds/redis/redis
+packages/feeds/mariadb/mariadb
 ```
 
-
-#### Help for creating patching with packages
-https://lede-project.org/docs/guide-developer/use-patches-with-buildsystem   
-  
-### Build a package and add patches  
-
-#### Prepare
-
 ```bash
-# first run yes, but we don't need it, it is in lede-insomnia
-rm build_dir/target-arm_cortex-a9+vfpv3_musl-1.1.16_eabi/redis* -rf
-rm build_dir/target-mipsel_24kc_musl-1.1.16/redis-4.0.2
-rm build_dir/target-mips_24kc_musl-1.1.16/redis-4.0.2/
-rm feeds/redis* -rf
-./scripts/feeds update -a
-./scripts/feeds install -a
+echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 
-# once you already updated the all
-./scripts/feeds install redis
-./scripts/feeds update -a -p redis
-
-# build the package
-cd /build/source
-```
-
-### Build a package
-
-```bash
-make package/feeds/redis/redis/{clean,prepare,compile} package/index V=s
-```
-
-### To create the patch
-
-```bash
-make package/feeds/redis/redis/{clean,prepare} V=s QUILT=1
-cd /build/source/build_dir/target-arm_cortex-a9+vfpv3_musl-1.1.16_eabi/redis-4.0.2/
-cd /build/source/build_dir/target-mipsel_24kc_musl-1.1.16/redis-4.0.2
-cd /build/source/build_dir/target-mips_24kc_musl-1.1.16/redis-4.0.2/
-quilt push -a
-quilt new 010-redis.patch
-quilt edit ./deps/jemalloc/src/pages.c 
-quilt edit src/Makefile 
-# if work with CONFIG_EDAC_ATOMIC_SCRUB if it is atomic instructions or threads 
-quilt edit src/atomicvar.h
-quilt series
-quilt diff
-quilt refresh
-```
-
-### To edit a patch
-
-```bash
-make package/feeds/redis/redis/{clean,prepare} V=s QUILT=1
-cd /build/source/build_dir/target-mipsel_24kc_musl-1.1.16/redis-4.0.2
-cd /build/source/build_dir/target-mips_24kc_musl-1.1.16/redis-4.0.2/
-quilt series
-quilt refresh
-quilt push 010-redis.patch
-quilt edit ./deps/jemalloc/src/pages.c 
-quilt edit src/Makefile 
-quilt edit src/atomicvar.h
-quilt diff
-quilt refresh
+make package/feeds/mariadb/mariadb/{clean,prepare,compiler} V=s 
 ```
 
 
@@ -138,7 +46,7 @@ quilt refresh
 
 ---
 
-[**P3X-LEDE-REDIS**](https://pages.corifeus.com/lede-redis) Build v4.0.33-107 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.35-3 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
  
