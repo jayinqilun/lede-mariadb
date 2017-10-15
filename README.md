@@ -13,7 +13,12 @@ Your built package:
 
 Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia), of course it includes ```init.d``` service as well.
 
+
+This is if you have ext-root or enough NAND. :)
+
 ```bash
+mkdir -p /var/lib/mysql
+mysql_install_db --force --basedir=/usr
 /etc/init.d/mariadb stop|start
 ```
 
@@ -32,6 +37,8 @@ Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link D
 ```text
 packages/feeds/mariadb/mariadb
 ```
+# To use it
+
 
 # Build
 
