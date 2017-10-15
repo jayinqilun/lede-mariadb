@@ -35,7 +35,7 @@ packages/feeds/mariadb/mariadb
 
 # Build
 
-From ```lede-insomnia```
+Clone from GitHub ```patrixk3/lede-insomnia``` repo.
 
 ```bash
 
@@ -47,10 +47,13 @@ From ```lede-insomnia```
 # then
 echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 
+./scripts/feeds update -a
+./scripts/feeds install -a
 ./scripts/feeds update -a -p mariadb
 ./scripts/feeds install mariadb
 
 make package/feeds/mariadb/mariadb/{clean,prepare,compile} V=s
+
 ```
 
 
