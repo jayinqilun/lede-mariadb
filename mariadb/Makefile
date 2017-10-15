@@ -22,8 +22,9 @@ PKG_SOURCE_URL:=\
 	http://ftp.kaist.ac.kr/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)/source/ \
 	http://ftp.utexas.edu/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)/source/
 PKG_HASH:=5dbde98d7e4a5a1721b6cbed7898b2549a88866247951cf586057975c6cea641
-PKG_MAINTAINER:=Lucian Cristian <lucian.cristian@gmail.com>
-PKG_LICENSE:=GPL-2.0
+PKG_MAINTAINER:=Patrik Laszlo <alabard@gmail.com>
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_DEPENDS:=mariadb/host libncurses libreadline
 HOST_BUILD_DEPENDS += mariadb/host
 PKG_BUILD_PARALLEL:=1
