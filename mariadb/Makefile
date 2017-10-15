@@ -6,7 +6,8 @@
 #
 
 include $(TOPDIR)/rules.mk
-include $(INCLUDE_DIR)/uclibc++.mk
+#include $(INCLUDE_DIR)/uclibc++.mk
+CXX_DEPENDS = +libstdcpp
 
 PKG_NAME:=mariadb
 PKG_VERSION:=5.5.57
