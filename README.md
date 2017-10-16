@@ -4,8 +4,6 @@
 
 # The LEDE Stable MariaDB 5.5 package
 
----
-
  
                         
 [//]: #@corifeus-header:end
@@ -104,7 +102,7 @@ make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
 
 ---
 
-[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.40-13 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.41-14 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
  
