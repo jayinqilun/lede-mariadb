@@ -42,6 +42,18 @@ http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
 ```
 
+
+## Your own build
+
+```bash
+cp feeds.conf.default feeds.conf
+echo 'src-git redis https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
+./scripts/feeds update -a
+./scripts/feeds install -a
+./scripts/feeds update mariadb
+./scripts/feeds install -a -p  mariadb
+```
+
 ## The info
 
 Your built package:
@@ -84,7 +96,7 @@ packages/feeds/mariadb/mariadb
 # To use it
 
 
-# Build
+# Build LEDE INSOMNIA
 
 Clone from GitHub ```patrixk3/lede-insomnia``` repo.
 
