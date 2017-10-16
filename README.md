@@ -2,33 +2,13 @@
 
   [![Build Status](https://travis-ci.org/patrikx3/lede-mariadb.svg?branch=master)](https://travis-ci.org/patrikx3/lede-mariadb)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master) 
 
+# The LEDE Stable MariaDB 5.5 package
+
 ---
 
  
-# The LEDE Stable MariaDB 5.5 package
-
-This is an open source project. Just code.
-
-### Node Version Requirement 
-``` 
->=7.8.0 
-```  
-   
-### Built on Node 
-``` 
-v8.7.0
-```   
-   
-The ```async``` and ```await``` keywords are required.
-
-Install NodeJs:    
-https://nodejs.org/en/download/package-manager/    
-
-# Description  
-
                         
 [//]: #@corifeus-header:end
-# LEDE-MARIADB 5.5.57
 
 ## The feed
 
@@ -124,7 +104,7 @@ make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
 
 ---
 
-[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.36-2 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.40-13 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
  

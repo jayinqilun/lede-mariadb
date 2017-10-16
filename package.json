@@ -2,13 +2,13 @@
     "name": "p3x-lede-mariadb",
     "corifeus": {
         "prefix": "p3x-",
-        "type": "p3x",
+        "type": "lede",
         "cdn": true,
         "nodejs": "v8.7.0",
         "icon": "fa fa-database",
         "code": "Elephant"
     },
-    "version": "5.5.36-2",
+    "version": "5.5.40-13",
     "description": "The LEDE Stable MariaDB 5.5 package",
     "main": "src/index.js",
     "directories": {
@@ -31,7 +31,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.919-177"
+        "corifeus-builder": "^1.7.923-184"
     },
     "engines": {
         "node": ">=7.8.0"
