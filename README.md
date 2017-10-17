@@ -30,6 +30,20 @@ echo 'src-git redis https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 ./scripts/feeds install -a
 ./scripts/feeds update mariadb
 ./scripts/feeds install -a -p  mariadb
+
+
+# create a .config
+# you might disable lite option in make menuconfig
+make menuconfig
+
+# might need as well
+make kernel_menuconfig
+
+# either
+make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
+
+# or
+make V=s
 ```
 
 ## The info
@@ -93,8 +107,18 @@ echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.con
 ./scripts/feeds update -a -p mariadb
 ./scripts/feeds install mariadb
 
+# create a .config
+# you might disable lite option in make menuconfig
+make menuconfig
+
+# might need as well
+make kernel_menuconfig
+
+# either
 make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
 
+# or
+make V=s
 ```
 
 
