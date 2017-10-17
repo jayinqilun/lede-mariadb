@@ -6,6 +6,8 @@
                         
 [//]: #@corifeus-header:end
 
+Right now, it only builds with the ```LITE``` version in the ```make menuconfig``` in ```utilities/databases/mariadb```, select all.
+
 ## The feed
 
 http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
