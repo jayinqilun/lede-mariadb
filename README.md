@@ -6,7 +6,7 @@
                         
 [//]: #@corifeus-header:end
 
-There is a ```LITE``` version, but this is the full blown package, that I built for you.
+There is a ```LITE``` version, but this is the full blown package, that I built for you. If you want to use the slimmed ```LITE``` version, it is in ```make menuconfig``` in ```utilities/database/mariadb``` then ```ENTER``` and in the sub-menus you can choose ```LITE```.
 
 ## The feed
 
