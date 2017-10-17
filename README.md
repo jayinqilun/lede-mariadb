@@ -32,7 +32,6 @@ echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.con
 
 # create a .config
 # the default is LITE
-# I think right now it only works with LITE settings
 make menuconfig
 
 # might need as well
