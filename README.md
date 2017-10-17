@@ -33,8 +33,8 @@ echo 'src-git redis https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 
 
 # create a .config
-# you might enable lite option in make menuconfig
-# i built the full
+# you might disable lite option in make menuconfig
+# the default is LITE
 make menuconfig
 
 # might need as well
