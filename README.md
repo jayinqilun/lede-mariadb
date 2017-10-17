@@ -8,6 +8,9 @@
                         
 [//]: #@corifeus-header:end
 
+
+# Right now is in progress, for now it is 5.5 but soon ...
+
 ## The feed
 
 http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
@@ -34,6 +37,7 @@ echo 'src-git redis https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
 
 # create a .config
 # you might disable lite option in make menuconfig
+# it is still not working perfectly
 make menuconfig
 
 # might need as well
@@ -79,47 +83,6 @@ It will be in all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia
 
 ### CPU type
 Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link DIR 860l B1 RAMIPS since it is 5.5.
-
-# The location:  
-  
-```text
-packages/feeds/mariadb/mariadb
-```
-# To use it
-
-
-# Build LEDE INSOMNIA
-
-Clone from GitHub ```patrixk3/lede-insomnia``` repo.
-
-```bash
-
-# either
-./run-d-link-dir-860l-b1
-# or
-./run-linksys-wrt
-
-# then
-echo 'src-git mariadb https://github.com/patrikx3/lede-mariadb.git' >> feeds.conf
-
-./scripts/feeds update -a
-./scripts/feeds install -a
-./scripts/feeds update -a -p mariadb
-./scripts/feeds install mariadb
-
-# create a .config
-# you might disable lite option in make menuconfig
-make menuconfig
-
-# might need as well
-make kernel_menuconfig
-
-# either
-make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
-
-# or
-make V=s
-```
 
 
 [//]: #@corifeus-footer
