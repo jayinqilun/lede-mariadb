@@ -8,8 +8,8 @@
         "icon": "fa fa-database",
         "code": "Elephant"
     },
-    "version": "5.5.41-14",
-    "description": "The LEDE Stable MariaDB 5.5 package",
+    "version": "10.2.42-15",
+    "description": "The LEDE Stable MariaDB 10.2.9 package",
     "main": "src/index.js",
     "directories": {
         "test": "test"
