@@ -3,11 +3,10 @@
   [![Build Status](https://travis-ci.org/patrikx3/lede-mariadb.svg?branch=master)](https://travis-ci.org/patrikx3/lede-mariadb)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master) 
 
 # The LEDE Stable MariaDB 5.5 package
-
- 
                         
 [//]: #@corifeus-header:end
 
+There is a ```LITE``` version, but this is the full blown package, that I built for you.
 
 ## The feed
 
