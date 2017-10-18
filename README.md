@@ -6,6 +6,8 @@
                         
 [//]: #@corifeus-header:end
 
+It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/var/lib/mysql``` and ```/var/lib/mysql-tmp```. 
+
 ## The feed
 
 http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
