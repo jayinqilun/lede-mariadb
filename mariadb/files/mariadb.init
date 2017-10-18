@@ -8,8 +8,8 @@ SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 SERVICE_STOP_TIME=9
 
-DATA="/var/lib/mysql"
-DATA_TMP="/var/lib/mysql-tmp/"
+DATA="/opt/var/lib/mysql"
+DATA_TMP="/opt/var/lib/mysql-tmp/"
 
 error() {
     echo "${initscript}:" "$@" 1>&2

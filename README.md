@@ -6,7 +6,7 @@
                         
 [//]: #@corifeus-header:end
 
-It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/var/lib/mysql``` and ```/var/lib/mysql-tmp```. 
+It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```. 
 
 ## The feed
 
@@ -65,7 +65,6 @@ Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/led
 This is if you have ext-root or enough NAND. :)
 
 ```bash
-mkdir -p /var/lib/mysql
 mysql_install_db --force --basedir=/usr
 /etc/init.d/mariadb stop|start
 ```
