@@ -6,7 +6,7 @@
                         
 [//]: #@corifeus-header:end
 
-It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```, but you can configure at ```/etc/mysql/my.cnf```. 
+It is important that you use ext-root, since MariaDB is space hungry. The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```, but you can configure at ```/etc/mysql/my.cnf```. So, if you move the DB location, then you must change ```/etc/init.d/mariadb``` since right now it is a symlink, because the built-in is ```/var/lib/mysql``` but ```LEDE``` puts it into the ```ROM```. But, I think it is should work for you given the ext-root is out of the ```ROM``` with this setup.
 
 ## The feed
 
