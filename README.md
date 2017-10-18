@@ -89,7 +89,7 @@ Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link D
 
 The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp``` (auto created), but you can configure at ```/etc/mysql/my.cnf``` and ```/etc/init.d/mariadb```. So, if you move the DB location, then you must change ```/etc/init.d/mariadb``` as well as ```my.cnf``` together, since right now it is a symlink. The built-in is ```/var/lib/mysql```, that, you can't change right now, but ```LEDE``` puts it into the ```ROM```, so I created a symlink for ```/var/lib/mysql``` to ```/opt/var/lib/mysql```. That's all.
 
-Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` and you have a different setup, please do not use ```/var/lib/mysql```, otherwise you have to work on it more, but of course if you change the ```my.cnf``` and ```/etc/init.d/mariadb```. 
+Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` and you have a different setup, please do not use ```/var/lib/mysql```, otherwise you have to work on it more, but of course if you change the ```my.cnf``` and ```/etc/init.d/mariadb``` any setup can be configured at will. 
 
 [//]: #@corifeus-footer
 
