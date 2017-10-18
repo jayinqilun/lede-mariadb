@@ -6,7 +6,7 @@
                         
 [//]: #@corifeus-header:end
 
-It is important that you use ext-root, since MariaDB is space hungry. The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```, but you can configure at ```/etc/mysql/my.cnf```. So, if you move the DB location, then you must change ```/etc/init.d/mariadb``` since right now it is a symlink, because the built-in is ```/var/lib/mysql``` but ```LEDE``` puts it into the ```ROM```. But, I think it is should work for you given the ext-root is out of the ```ROM``` with this setup.
+It is important that you use ```ext-root```, before you install, since MariaDB is space hungry. If you want to move the defaults, it requires you to program with it. The info is at the bottom. 
 
 ## The feed
 
@@ -84,6 +84,12 @@ It will be in all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia
 ### CPU type
 Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link DIR 860l B1 RAMIPS since it is 5.5.
 
+
+# Change the data location
+
+The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp``` (auto created), but you can configure at ```/etc/mysql/my.cnf``` and ```/etc/init.d/mariadb```. So, if you move the DB location, then you must change ```/etc/init.d/mariadb``` as well as ```my.cnf``` together, since right now it is a symlink. The built-in is ```/var/lib/mysql```, that, you can't change right now, but ```LEDE``` puts it into the ```ROM```, so I created a symlink for ```/var/lib/mysql``` to ```/opt/var/lib/mysql```. That's all.
+
+Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` and you have a different setup, please do not use ```/var/lib/mysql```, otherwise you have to work on it more, but of course if you change the ```my.cnf``` and ```/etc/init.d/mariadb```. 
 
 [//]: #@corifeus-footer
 
