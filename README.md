@@ -65,6 +65,9 @@ Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/led
 This is if you have ext-root or enough NAND. :)
 
 ```bash
+# it is important that you have a conflicts if you use php libmysqlclient, so
+# opkg remove libmysqlclient
+opkg install mariadb-server libmariadb mariadb-client-extra 
 mysql_install_db --force --basedir=/usr
 /etc/init.d/mariadb stop|start
 ```
