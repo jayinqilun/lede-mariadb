@@ -65,8 +65,9 @@ Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/led
 This is if you have ext-root or enough NAND. :)
 
 ```bash
-# it is important that you have a conflict if you use php some mysql client
-# like libmysqlclient or libmysqlclient-r , so
+# it is important that you might have a conflict if you use 
+# some client like php, python or any other mysql client
+# libmysqlclient or libmysqlclient-r , so
 # opkg remove libmysqlclient 
 # opkg remove libmysqlclient-r
 opkg install mariadb-server libmariadb mariadb-client-extra 
