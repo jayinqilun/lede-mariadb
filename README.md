@@ -20,7 +20,7 @@ http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
 ```
 
-## Built package
+## Built packages
   
 * Linksys WRT ARM 
   * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb/  
