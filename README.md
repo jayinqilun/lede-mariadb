@@ -6,7 +6,7 @@
                         
 [//]: #@corifeus-header:end
 
-It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```. 
+It is important that you have ext-root, since MariaDB is space hungry, the defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp```, but you can configure at ```/etc/mysql/my.cnf```. 
 
 ## The feed
 
@@ -18,6 +18,33 @@ src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a
 http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
 ```text
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
+```
+
+## Built package
+  
+* Linksys WRT ARM 
+  * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb/  
+
+* Like D-Link DIR 860L B1 RAMIPS 
+  * https://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb/
+
+
+## The router service
+
+Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia), of course it includes ```init.d``` service as well.
+
+
+This is if you have ext-root or enough NAND. :)
+
+```bash
+# it is important that you might have a conflict if you use 
+# some client like php, python or any other mysql client
+# libmysqlclient or libmysqlclient-r , so
+# opkg remove libmysqlclient 
+# opkg remove libmysqlclient-r
+opkg install mariadb-server libmariadb mariadb-client-extra 
+mysql_install_db --force --basedir=/usr
+/etc/init.d/mariadb stop|start
 ```
 
 
@@ -46,36 +73,8 @@ make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
 make V=s
 ```
 
-## The info
 
-Your built package:
-  
-* Linksys WRT ARM 
-  * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb/  
-
-* Like D-Link DIR 860L B1 RAMIPS 
-  * https://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb/
-
-
-## The router service
-
-Please, where you can find it in  [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia), of course it includes ```init.d``` service as well.
-
-
-This is if you have ext-root or enough NAND. :)
-
-```bash
-# it is important that you might have a conflict if you use 
-# some client like php, python or any other mysql client
-# libmysqlclient or libmysqlclient-r , so
-# opkg remove libmysqlclient 
-# opkg remove libmysqlclient-r
-opkg install mariadb-server libmariadb mariadb-client-extra 
-mysql_install_db --force --basedir=/usr
-/etc/init.d/mariadb stop|start
-```
-
-## Bulding
+## Bulding info
 
 This is based on:
 https://github.com/openwrt/packages/pull/4221 .
