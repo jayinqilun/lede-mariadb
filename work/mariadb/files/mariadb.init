@@ -8,7 +8,8 @@ SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 SERVICE_STOP_TIME=9
 
-DATA="/var/lib/mysql"
+DATA="/opt/var/lib/mysql"
+DATA_TMP="/opt/var/lib/mysql-tmp/"
 
 error() {
     echo "${initscript}:" "$@" 1>&2
@@ -34,6 +35,9 @@ check_dir_in_my_cnf() {
 
 start() {
     [ -d $DATA ] || mkdir -p $DATA
+    [ -d $DATA_TMP ] || mkdir -p $DATA_TMP
+    rm -rf /var/lib/mysql || true
+    ln -s $DATA /var/lib/mysql || true
     check_dir_in_my_cnf datadir
     check_dir_in_my_cnf tmpdir
     if [ $missing_dir == 1 ] ; then
