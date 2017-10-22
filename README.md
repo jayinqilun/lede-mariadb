@@ -12,23 +12,23 @@ It is important that you use ```ext-root```, before you install, since MariaDB i
 
 ## The feed
 
-http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
+http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
 ```text
-src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
 ```
 
-http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
+http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
 ```text
-src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
 ```
 
 ## Built packages
   
 * Linksys WRT ARM 
-  * https://cdn.corifeus.com/lede/17.01.3/packages/arm_cortex-a9_vfpv3/mariadb/  
+  * https://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb/  
 
 * Like D-Link DIR 860L B1 RAMIPS 
-  * https://cdn.corifeus.com/lede/17.01.3/packages/mipsel_24kc/mariadb/
+  * https://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb/
 
 
 ## The router service
@@ -97,7 +97,7 @@ Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` an
 
 ---
 
-[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.46-67 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.47-68 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
  
