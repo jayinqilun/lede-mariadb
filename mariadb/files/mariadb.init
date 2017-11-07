@@ -8,8 +8,8 @@ SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 SERVICE_STOP_TIME=9
 
-DATA="/opt/var/lib/mysql"
-DATA_TMP="/opt/var/lib/mysql-tmp/"
+DATA="/data/mysql"
+DATA_TMP="/data/mysql-tmp/"
 
 error() {
     echo "${initscript}:" "$@" 1>&2
@@ -45,8 +45,9 @@ start() {
     fi
     local datadir=$(sed -n -e "s/^[[:space:]]*datadir[[:space:]]*=[[:space:]\"']*\([^[:space:]\"']*\)[[:space:]\"']*/\1/p" /etc/mysql/my.cnf)
     if [ ! -f "$datadir/mysql/tables_priv.MYD" ]; then
-	error "Error: I didn't detect a privileges table, you might need to $init_command_msg"
-	return 1
+#	error "Error: I didn't detect a privileges table, you might need to $init_command_msg"
+#	return 1
+	mysql_install_db --basedir=/usr --ldata=/data/mysql --user=root --verbose
     fi
     service_start /usr/bin/mysqld
 }
