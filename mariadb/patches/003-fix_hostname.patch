@@ -1,11 +1,11 @@
-diff -uNr a/scripts/mysql_install_db b/scripts/mysql_install_db
---- a/scripts/mysql_install_db	2017-11-07 17:25:57.606926679 +0800
-+++ b/scripts/mysql_install_db	2017-11-07 17:26:42.566989470 +0800
+diff -uNr a/scripts/mysql_install_db.sh b/scripts/mysql_install_db.sh
+--- a/scripts/mysql_install_db.sh	2017-07-19 04:33:18.000000000 +0800
++++ b/scripts/mysql_install_db.sh	2017-11-08 14:19:44.523201476 +0800
 @@ -337,7 +337,7 @@
  
  
  # Try to determine the hostname
--hostname=`hostname`
+-hostname=`@HOSTNAME@`
 +hostname=`cat /proc/sys/kernel/hostname`
  
  # Check if hostname is valid
