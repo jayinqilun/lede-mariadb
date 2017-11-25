@@ -6,11 +6,9 @@
 #
 
 include $(TOPDIR)/rules.mk
-#include $(INCLUDE_DIR)/uclibc++.mk
-CXX_DEPENDS = +libstdcpp
 
 PKG_NAME:=mariadb
-PKG_VERSION:=5.5.57
+PKG_VERSION:=5.5.58
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -21,10 +19,9 @@ PKG_SOURCE_URL:=\
 	http://lon1.mirrors.digitalocean.com/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)/source/ \
 	http://ftp.kaist.ac.kr/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)/source/ \
 	http://ftp.utexas.edu/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)/source/
-PKG_HASH:=5dbde98d7e4a5a1721b6cbed7898b2549a88866247951cf586057975c6cea641
+PKG_HASH:=26fdf8784a51e5d6f7624c0f4528433a6188065dd1bf92ef69e27db6b0a41002
 PKG_MAINTAINER:=Patrik Laszlo <alabard@gmail.com>
-PKG_LICENSE:=MIT
-PKG_LICENSE_FILES:=LICENSE
+PKG_LICENSE:=GPL-2.0
 PKG_BUILD_DEPENDS:=mariadb/host libncurses libreadline
 HOST_BUILD_DEPENDS += mariadb/host
 PKG_BUILD_PARALLEL:=1
@@ -39,7 +36,7 @@ include $(INCLUDE_DIR)/host-build.mk
 define Package/libmariadb
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=$(CXX_DEPENDS) +zlib +libpthread +libncurses +libreadline
+  DEPENDS:=+libstdcpp +zlib +libpthread +libncurses +libreadline
   TITLE:=MariaDB client library
   URL:=http://mariadb.org/
   PROVIDES:=libmysqlclient libmysqlclient-r mariadb
@@ -137,8 +134,10 @@ CMAKE_OPTIONS += -DIMPORT_EXECUTABLES=$(HOST_BUILD_DIR)/host/import_executables.
 define Host/Patch/Default
 endef
 
+NUM_CORES ?= $(shell grep -c "vendor_id" /proc/cpuinfo)
+
 define Host/Compile
-	( cd $(HOST_BUILD_DIR)/ ; mkdir host/ ; cd host ; cmake -DWITHOUT_TOKUDB=1 .. ; $(MAKE) -j$(nproc) IMPORT_EXECUTABLES )
+	( cd $(HOST_BUILD_DIR)/ ; mkdir host/ ; cd host ; cmake -DWITHOUT_TOKUDB=1 .. ; $(MAKE) -j$(NUM_CORES) IMPORT_EXECUTABLES )
 endef
 
 define Host/Install
@@ -169,6 +168,7 @@ endef
 define Package/libmariadb/install
 	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/lib/mysql
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmysqlclient*.so.* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmysqlclient*.so $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/plugin/mysql_clear_password.so $(1)/usr/lib/mysql/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/plugin/dialog.so $(1)/usr/lib/mysql/
 endef
