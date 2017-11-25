@@ -47,8 +47,7 @@ This is if you have ext-root or enough NAND. :)
 # it is important that you might have a conflict if you use 
 # some client like php, python or any other mysql client
 # libmysqlclient or libmysqlclient-r , so
-# opkg remove libmysqlclient 
-# opkg remove libmysqlclient-r
+opkg remove libmysqlclient libmysqlclient-r
 opkg update
 opkg install mariadb-server libmariadb mariadb-client-extra 
 mysql_install_db --force --basedir=/usr
