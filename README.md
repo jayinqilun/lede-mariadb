@@ -8,7 +8,7 @@
                         
 [//]: #@corifeus-header:end
 
-It is important that you use ```ext-root```, before you install, since MariaDB is space hungry. If you want to move the defaults, it requires you to program with it. The info is at the bottom. 
+It is important that you use ```ext-root```, before you install, since MariaDB is space hungry. If you want to move the defaults, it requires you to program with it. The info is at the bottom. The defaults are the Linux defaults ```/var/lib/mysql```.
 
 ## The feed
 
