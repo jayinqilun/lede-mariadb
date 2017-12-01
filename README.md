@@ -17,16 +17,29 @@ https://pages.corifeus.com/github/lede-insomnia/docs/ext-root.html
 
 ## The feed
 
+### Tested on Linksys WRT
+
 http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
+
 ```text
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
 ```
 
+### Tested on D-Link DIR 860L B1
+
 http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
+
 ```text
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
 ```
 
+### RPI-3
+
+https://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
+
+```text
+src/gz reboot_insomnia http://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
+```
 ## Built packages
   
 * Linksys WRT ARM 
@@ -34,6 +47,9 @@ src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/
 
 * Like D-Link DIR 860L B1 RAMIPS 
   * https://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb/
+
+* RPI-3 
+  * http://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
 
 
 ## The router service
