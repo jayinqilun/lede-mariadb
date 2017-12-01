@@ -8,7 +8,7 @@
         "icon": "fa fa-database",
         "code": "Elephant"
     },
-    "version": "5.5.93-109",
+    "version": "5.5.95-112",
     "description": "The LEDE Stable MariaDB 5.5.58 package",
     "main": "src/index.js",
     "directories": {
@@ -31,7 +31,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.1045-233"
+        "corifeus-builder": "^1.7.1050-234"
     },
     "engines": {
         "node": ">=8.9.0"
