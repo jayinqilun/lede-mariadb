@@ -35,10 +35,10 @@ src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/
 
 ### RPI-3
 
-https://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
+http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb/
 
 ```text
-src/gz reboot_insomnia http://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb
 ```
 ## Built packages
   
