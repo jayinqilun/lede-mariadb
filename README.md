@@ -49,7 +49,7 @@ src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a
   * https://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb/
 
 * RPI-3 
-  * http://cdn.corifeus.com/lede/17.01.4/targets/brcm2708/bcm2710/packages/
+  * http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb/
 
 
 ## The router service
