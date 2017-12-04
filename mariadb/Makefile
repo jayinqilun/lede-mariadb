@@ -11,6 +11,9 @@ PKG_NAME:=mariadb
 PKG_VERSION:=5.5.58
 PKG_RELEASE:=1
 
+# make package/feeds/mariadb/mariadb/download V=s
+# make package/feeds/mariadb/mariadb/check FIXUP=1 V=s
+# cat package/feeds/mariadb/mariadb/Makefile | less
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=\
 	http://ftp.hosteurope.de/mirror/archive.mariadb.org/$(PKG_NAME)-$(PKG_VERSION)/source/ \
