@@ -34,8 +34,8 @@ check_dir_in_my_cnf() {
 }
 
 start() {
-    [ -d $DATA ] || mkdir -p $DATA
-    [ -d $DATA_TMP ] || mkdir -p $DATA_TMP
+    [ -d "$DATA" ] || mkdir -p $DATA
+    [ -d "$DATA_TMP" ] || mkdir -p $DATA_TMP
     rm -rf /var/lib/mysql || true
     ln -s $DATA /var/lib/mysql || true
     check_dir_in_my_cnf datadir
