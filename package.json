@@ -4,11 +4,11 @@
         "prefix": "p3x-",
         "type": "lede",
         "cdn": true,
-        "nodejs": "v9.2.1",
+        "nodejs": "v9.3.0",
         "icon": "fa fa-database",
         "code": "Elephant"
     },
-    "version": "5.5.100-123",
+    "version": "5.5.102-129",
     "description": "The LEDE Stable MariaDB 5.5.58 package",
     "main": "src/index.js",
     "directories": {
@@ -31,7 +31,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.1071-246"
+        "corifeus-builder": "^1.7.1075-247"
     },
     "engines": {
         "node": ">=8.9.0"
