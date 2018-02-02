@@ -11,7 +11,7 @@ PKG_NAME:=mariadb
 PKG_VERSION:=5.5.58
 PKG_RELEASE:=1
 
-# might to keep the PKG_HASH
+# might to remove the PKG_HASH
 # make package/feeds/mariadb/mariadb/download V=s
 # make package/feeds/mariadb/mariadb/check FIXUP=1 V=s
 # cat package/feeds/mariadb/mariadb/Makefile | less
