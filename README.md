@@ -114,6 +114,12 @@ The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp``` (auto
 
 Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` and you have a different setup, please do not use ```/var/lib/mysql```, otherwise you have to work on it more, but of course if you change the ```my.cnf``` and ```/etc/init.d/mariadb``` any setup can be configured at will. 
 
+
+# Based on
+
+https://github.com/openwrt/packages/pull/4221
+
+
 [//]: #@corifeus-footer
 
 ---
