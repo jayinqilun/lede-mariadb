@@ -1,6 +1,6 @@
 [//]: #@corifeus-header
 
-# The LEDE Stable MariaDB 5.5.58 package
+# The LEDE Stable MariaDB 10.2.9 package
 
                         
 [//]: #@corifeus-header:end
