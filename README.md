@@ -105,7 +105,7 @@ https://github.com/openwrt/packages/pull/4221 .
 It will be in all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia).
 
 ### CPU type
-Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link DIR 860l B1 RAMIPS since it is 5.5.
+Right now, I only test on ARM (Linksys WRT1200ACS, Linksys 3200ACM) and D-Link DIR 860l B1 RAMIPS since it is 10.2.9.
 
 
 # Change the data location
@@ -117,14 +117,16 @@ Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` an
 
 # Based on
 
-https://github.com/openwrt/packages/pull/4221
+https://github.com/openwrt/packages/pull/4221  
+and  
+https://github.com/lucize/packages/tree/b1e2aea8f9bec716911d1b86436d1809f970fd28/utils/mariadb  
 
 
 [//]: #@corifeus-footer
 
 ---
 
-[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.171-193 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v10.2.172-197 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) 
 
