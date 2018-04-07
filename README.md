@@ -100,7 +100,7 @@ make V=s
 ## Bulding info
 
 This is based on:
-https://github.com/openwrt/packages/pull/4221 .
+https://github.com/openwrt/packages/pull/4221 and later https://github.com/openwrt/packages/pull/5851 .
 
 It will be in all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia).
 
