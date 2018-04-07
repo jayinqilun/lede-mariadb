@@ -31,7 +31,7 @@ CMAKE_INSTALL:=1
 PLUGIN_DIR:=/usr/lib/mysql/plugin
 
 MARIADB_COMMON_DEPENDS := \
-	+libpthread
+	+libpthread \
 	+libatomic \
 	+libopenssl \
 	+libstdcpp \
