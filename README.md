@@ -117,9 +117,9 @@ Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` an
 
 # Based on
 
-https://github.com/openwrt/packages/pull/4221 (Mariadb 5.5)
-and later 
-https://github.com/openwrt/packages/pull/5851 (Mariadb 10.1)
+https://github.com/openwrt/packages/pull/4221 (Mariadb 5.5)  
+and later   
+https://github.com/openwrt/packages/pull/5851 (Mariadb 10.1) / https://github.com/micmac1/packages/tree/mariadb/utils/mariadb
 
 ## Lede vs OpenWrt
 
