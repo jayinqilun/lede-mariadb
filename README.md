@@ -65,11 +65,10 @@ This is if you have ext-root or enough NAND. :)
 # libmysqlclient or libmysqlclient-r , so
 opkg remove libmysqlclient libmysqlclient-r
 opkg update
-opkg install mariadb-server libmariadb mariadb-client-extra 
+opkg install mariadb-server-extra libmariadbclient mariadb-client-extra 
 mysql_install_db --force --basedir=/usr
-/etc/init.d/mariadb stop|start
+/etc/init.d/mysql stop|start
 ```
-
 
 ## Your own build
 
