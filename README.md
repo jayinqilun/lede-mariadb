@@ -70,6 +70,7 @@ mysql_install_db --force --basedir=/usr
 /etc/init.d/mysql stop|start
 ```
 
+
 ## Your own build
 
 ```bash
@@ -119,6 +120,10 @@ Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` an
 https://github.com/openwrt/packages/pull/4221 (Mariadb 5.5)
 and later 
 https://github.com/openwrt/packages/pull/5851 (Mariadb 10.1)
+
+## Lede vs OpenWrt
+
+https://github.com/openwrt/packages/pull/5851#issuecomment-379456277
 
 [//]: #@corifeus-footer
 
