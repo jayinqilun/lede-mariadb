@@ -90,7 +90,9 @@ make menuconfig
 make kernel_menuconfig
 
 # either
-make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
+# -j9 can be the number of cores + 1 
+# (some programs are not using now, so add one more, I got 8 core)
+make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s -j9
 
 # or
 make V=s
