@@ -9,7 +9,7 @@
         "code": "Elephant"
     },
     "version": "10.1.187-215",
-    "description": "The LEDE Stable MariaDB 10 package",
+    "description": "🐘 The LEDE Stable MariaDB 10 package",
     "main": "src/index.js",
     "directories": {
         "test": "test"
