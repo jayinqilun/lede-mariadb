@@ -56,6 +56,7 @@ MARIADB_SERVER_PLUGINS := \
 	ha_example \
 	ha_federated \
 	ha_federatedx \
+	ha_innodb \
 	ha_spider \
 	ha_test_sql_discovery \
 	handlersocket \
@@ -76,7 +77,7 @@ MARIADB_SERVER_PLUGINS := \
 	wsrep_info
 
 PKG_CONFIG_DEPENDS := \
-	$(patsubst %,CONFIG_PACKAGE_$(PKG_NAME)-server-plugin-%,$(MARIADB_SERVER_PLUGINS)) \
+	$(patsubst %,CONFIG_PACKAGE_$(PKG_NAME)-server-plugin-%,$(subst _,-,$(MARIADB_SERVER_PLUGINS))) \
 	CONFIG_PACKAGE_mariadb-server
 
 plugin-adt_null                 := PLUGIN_AUDIT_NULL
@@ -97,6 +98,7 @@ plugin-ha_connect               := PLUGIN_CONNECT
 plugin-ha_example               := PLUGIN_EXAMPLE
 plugin-ha_federated             := PLUGIN_FEDERATED
 plugin-ha_federatedx            := PLUGIN_FEDERATEDX
+plugin-ha_innodb                := PLUGIN_INNOBASE
 plugin-ha_spider                := PLUGIN_SPIDER
 plugin-ha_test_sql_discovery    := PLUGIN_TEST_SQL_DISCOVERY
 plugin-handlersocket            := PLUGIN_HANDLERSOCKET
@@ -121,14 +123,11 @@ MARIADB_CLIENT := \
 	mysqlcheck
 
 MARIADB_CLIENT_EXTRA := \
-	mariabackup \
 	mysql_find_rows \
-	mysql_fix_extensions \
 	mysql_waitpid \
 	mysqlaccess \
 	mysqladmin \
 	mysqldump \
-	mysqldumpslow \
 	mysqlimport \
 	mysqlshow \
 	mysqlslap \
@@ -143,12 +142,14 @@ MARIADB_SERVER := \
 
 MARIADB_SERVER_EXTRA := \
 	aria* \
+	mariabackup \
 	msql2mysql \
 	myisam_ftdump \
 	myisamchk \
 	myisamlog \
 	myisampack \
 	mysql_convert_table_format \
+	mysql_fix_extensions \
 	mysql_plugin \
 	mysql_secure_installation \
 	mysql_setpermission \
@@ -157,6 +158,7 @@ MARIADB_SERVER_EXTRA := \
 	mysqld_multi \
 	mysqld_safe \
 	mysqld_safe_helper \
+	mysqldumpslow \
 	mysqlhotcopy \
 	perror \
 	replace \
@@ -220,11 +222,7 @@ endef
 define Package/mariadb-client-extra
   $(call Package/mariadb/Default)
   TITLE:=MariaDB database extra client binaries
-  DEPENDS:= \
-	  mariadb-client \
-	  +!arc:libaio \
-	  +liblzma \
-	  +libpcre
+  DEPENDS:=mariadb-client
 endef
 
 define Package/mariadb-client-extra/description
@@ -315,10 +313,8 @@ CMAKE_OPTIONS += -DSECURITY_HARDENED=OFF
 
 ifeq ($(CONFIG_PACKAGE_mariadb-server),)
 CMAKE_OPTIONS += -DWITHOUT_SERVER=ON
-CMAKE_HOST_OPTIONS += -DWITHOUT_SERVER=ON
 else
 CMAKE_OPTIONS += -DWITHOUT_SERVER=OFF
-CMAKE_HOST_OPTIONS += -DWITHOUT_SERVER=OFF
 endif
 
 CMAKE_OPTIONS += \
@@ -379,19 +375,21 @@ CMAKE_OPTIONS += \
 	-DPLUGIN_CRACKLIB_PASSWORD_CHECK=NO
 
 CMAKE_OPTIONS += \
-	$(foreach p,$(MARIADB_SERVER_PLUGINS),-D$(plugin-$(p))=$(if $(CONFIG_PACKAGE_$(PKG_NAME)-server-plugin-$(p)),DYNAMIC,NO))
+	$(foreach p,$(MARIADB_SERVER_PLUGINS),-D$(plugin-$(p))=$(if $(CONFIG_PACKAGE_$(PKG_NAME)-server-plugin-$(subst _,-,$(p))),DYNAMIC,NO))
 
-# Set CMAKE_FIND_ROOT_PATH_MODE_LIBRARY and CMAKE_FIND_ROOT_PATH_MODE_INCLUDE
+# Set CMAKE_FIND_ROOT_PATH_MODE_INCLUDE and CMAKE_FIND_ROOT_PATH_MODE_LIBRARY
 # to BOTH as otherwise the host build will not find some required dependencies
 # installed on the host machine, like ncurses.
 #
-# Set CMAKE_SKIP_RPATH to FALSE to get RPATH added in case libxml2 is not
-# available on the build host and the host applications need to be able to find
-# the library in the OpenWrt host directory.
+# Add "$(STAGING_DIR_HOSTPKG)/lib" to the RPATH of the host helpers,
+# otherwise they might not find the location of a library at run time.
 CMAKE_HOST_OPTIONS += \
-	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
+	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
 	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
+	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH \
+	-DCMAKE_INSTALL_RPATH="$(STAGING_DIR_HOSTPKG)/lib" \
 	-DCMAKE_SKIP_RPATH=FALSE \
+	-DWITHOUT_SERVER=OFF \
 	-DWITHOUT_TOKUDB=1
 
 # Some helpers must be compiled for host in order to crosscompile mariadb for
@@ -402,16 +400,20 @@ CMAKE_HOST_OPTIONS += \
 # must then be passed to cmake during target build.
 # see also https://mariadb.com/kb/en/mariadb/cross-compiling-mariadb/
 
-CMAKE_OPTIONS += -DIMPORT_EXECUTABLES=$(HOST_BUILD_DIR)/import_executables.cmake
+CMAKE_OPTIONS += -DIMPORT_EXECUTABLES=$(STAGING_DIR_HOSTPKG)/share/mariadb/import_executables.cmake
 
 define Host/Compile
 	$(call Host/Compile/Default,import_executables)
 endef
 
-# Don't install host-mariadb. We just need to build import_executable.
-# Therefore only run 'true' and do nothing, not even the default action.
 define Host/Install
-	true
+	$(SED) 's|$(HOST_BUILD_DIR)|$(STAGING_DIR_HOSTPKG)/share/mariadb|' $(HOST_BUILD_DIR)/import_executables.cmake
+	$(INSTALL_DIR) $(1)/share/mariadb/{dbug,extra,scripts,sql}
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/dbug/factorial $(1)/share/mariadb/dbug
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/extra/comp_err $(1)/share/mariadb/extra
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/scripts/comp_sql $(1)/share/mariadb/scripts
+	$(INSTALL_BIN) $(HOST_BUILD_DIR)/sql/{gen_lex_hash,gen_lex_token} $(1)/share/mariadb/sql
+	$(INSTALL_DATA) $(HOST_BUILD_DIR)/import_executables.cmake $(1)/share/mariadb
 endef
 
 define Build/InstallDev
@@ -475,24 +477,24 @@ define Package/mariadb-server/conffiles
 endef
 
 define BuildPlugin
-  define Package/$(PKG_NAME)-server-plugin-$(1)
+  define Package/$(PKG_NAME)-server-plugin-$(subst _,-,$(1))
     $$(call Package/mariadb/Default)
     TITLE:=MariaDB database plugin
-    DEPENDS:=mariadb-server $(patsubst +%,+PACKAGE_$(PKG_NAME)-server-plugin-$(1):%,$(2))
+    DEPENDS:=mariadb-server $(patsubst +%,+PACKAGE_$(PKG_NAME)-server-plugin-$(subst _,-,$(1)):%,$(2))
   endef
-  define Package/$(PKG_NAME)-server-plugin-$(1)/description
+  define Package/$(PKG_NAME)-server-plugin-$(subst _,-,$(1))/description
     $$(call Package/mariadb/description/Default)
 
 This package provides the $(1) plugin.
 
   endef
-  define Package/$(PKG_NAME)-server-plugin-$(1)/install
+  define Package/$(PKG_NAME)-server-plugin-$(subst _,-,$(1))/install
   	$(INSTALL_DIR) $$(1)$(PLUGIN_DIR)
 	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)$(PLUGIN_DIR)/$(1).so \
 		$$(1)$(PLUGIN_DIR)
   endef
-  $$(eval $$(call BuildPackage,$(PKG_NAME)-server-plugin-$(1)))
+  $$(eval $$(call BuildPackage,$(PKG_NAME)-server-plugin-$(subst _,-,$(1))))
 endef
 
 $(eval $(call HostBuild))
@@ -520,6 +522,7 @@ $(eval $(call BuildPlugin,ha_blackhole,))
 $(eval $(call BuildPlugin,ha_connect,+libxml2))
 $(eval $(call BuildPlugin,ha_federated,))
 $(eval $(call BuildPlugin,ha_federatedx,))
+$(eval $(call BuildPlugin,ha_innodb,))
 $(eval $(call BuildPlugin,ha_spider,))
 $(eval $(call BuildPlugin,ha_test_sql_discovery,))
 $(eval $(call BuildPlugin,handlersocket,))
