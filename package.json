@@ -9,7 +9,7 @@
         "code": "Elephant"
     },
     "version": "10.1.191-224",
-    "description": "🐘 The LEDE Stable MariaDB 10 package",
+    "description": "🐘 The LEDE Stable MariaDB latest package by Debian",
     "main": "src/index.js",
     "directories": {
         "test": "test"
@@ -31,7 +31,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.1332-365"
+        "corifeus-builder": "^1.7.1350-372"
     },
     "engines": {
         "node": ">=8.9.0"
