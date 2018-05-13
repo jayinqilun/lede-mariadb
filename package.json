@@ -10,7 +10,7 @@
         "opencollective": false,
         "reponame": "lede-mariadb"
     },
-    "version": "10.1.207-242",
+    "version": "10.1.210-243",
     "description": "🐘 The LEDE Stable MariaDB latest package by Debian",
     "main": "src/index.js",
     "directories": {
