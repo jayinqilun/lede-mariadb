@@ -10,7 +10,7 @@
         "opencollective": false,
         "reponame": "lede-mariadb"
     },
-    "version": "10.1.210-243",
+    "version": "10.1.212-244",
     "description": "🐘 The LEDE Stable MariaDB latest package by Debian",
     "main": "src/index.js",
     "directories": {
@@ -33,7 +33,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.1392-405"
+        "corifeus-builder": "^1.7.1400-407"
     },
     "engines": {
         "node": ">=8.9.0"
