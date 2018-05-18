@@ -8,9 +8,10 @@
         "icon": "fas fa-database",
         "code": "Elephant",
         "opencollective": false,
-        "reponame": "lede-mariadb"
+        "reponame": "lede-mariadb",
+        "build": true
     },
-    "version": "10.1.212-244",
+    "version": "10.1.214-247",
     "description": "🐘 The LEDE Stable MariaDB latest package by Debian",
     "main": "src/index.js",
     "directories": {
@@ -33,7 +34,7 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.7.1400-407"
+        "corifeus-builder": "^1.8.9-414"
     },
     "engines": {
         "node": ">=8.9.0"
