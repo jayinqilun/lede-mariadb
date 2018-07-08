@@ -4,14 +4,14 @@
         "prefix": "p3x-",
         "type": "lede",
         "cdn": true,
-        "nodejs": "v10.5.0",
+        "nodejs": "v10.6.0",
         "icon": "fas fa-database",
         "code": "Elephant",
         "opencollective": false,
         "reponame": "lede-mariadb",
         "build": true
     },
-    "version": "10.1.222-256",
+    "version": "10.1.224-257",
     "description": "🐘 The LEDE Stable MariaDB latest package by Debian",
     "main": "src/index.js",
     "directories": {
@@ -34,10 +34,10 @@
     "author": "Patrik Laszlo <alabard@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "corifeus-builder": "^1.8.27-426"
+        "corifeus-builder": "^1.8.35-434"
     },
     "engines": {
-        "node": ">=10.2.1"
+        "node": ">=10.5.0"
     },
     "homepage": "https://pages.corifeus.com/lede-mariadb",
     "dependencies": {}
