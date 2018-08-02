@@ -1,27 +1,45 @@
 [//]: #@corifeus-header
 
-  [![Build Status](https://travis-ci.org/patrikx3/lede-mariadb.svg?branch=master)](https://travis-ci.org/patrikx3/lede-mariadb)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/lede-mariadb/?branch=master) 
+  [![Build Status](https://travis-ci.org/patrikx3/lede-mariadb.svg?branch=master)](https://travis-ci.org/patrikx3/lede-mariadb) 
 
-# The LEDE Stable MariaDB 5.5 package
+# 🐘 The LEDE Stable MariaDB latest package by Debian
 
  
                         
 [//]: #@corifeus-header:end
 
-It is important that you use ```ext-root```, before you install, since MariaDB is space hungry. If you want to move the defaults, it requires you to program with it. The info is at the bottom. 
+It is important that you use ```ext-root```, before you install, since MariaDB is space hungry. If you want to move the defaults, it requires you to program with it. The info is at the bottom. The defaults are the Linux defaults ```/var/lib/mysql```.
+
+You can read about ```ext-root```  at:  
+https://pages.corifeus.com/github/lede-insomnia/docs/ext-root.html
+
+
 
 ## The feed
 
+### Tested on Linksys WRT
+
 http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
+
 ```text
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a9_vfpv3/mariadb
 ```
 
+### Tested on D-Link DIR 860L B1
+
 http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
+
 ```text
 src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb
 ```
 
+### RPI-3
+
+http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb/
+
+```text
+src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb
+```
 ## Built packages
   
 * Linksys WRT ARM 
@@ -29,6 +47,9 @@ src/gz reboot_mariadb http://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/
 
 * Like D-Link DIR 860L B1 RAMIPS 
   * https://cdn.corifeus.com/lede/17.01.4/packages/mipsel_24kc/mariadb/
+
+* RPI-3 
+  * http://cdn.corifeus.com/lede/17.01.4/packages/arm_cortex-a53_neon-vfpv4/mariadb/
 
 
 ## The router service
@@ -42,11 +63,11 @@ This is if you have ext-root or enough NAND. :)
 # it is important that you might have a conflict if you use 
 # some client like php, python or any other mysql client
 # libmysqlclient or libmysqlclient-r , so
-# opkg remove libmysqlclient 
-# opkg remove libmysqlclient-r
-opkg install mariadb-server libmariadb mariadb-client-extra 
+opkg remove libmysqlclient libmysqlclient-r
+opkg update
+opkg install mariadb-server-extra libmariadbclient mariadb-client-extra 
 mysql_install_db --force --basedir=/usr
-/etc/init.d/mariadb stop|start
+/etc/init.d/mysql stop|start
 ```
 
 
@@ -69,7 +90,9 @@ make menuconfig
 make kernel_menuconfig
 
 # either
-make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s
+# -j9 can be the number of cores + 1 
+# (some programs are not using now, so add one more, I got 8 core)
+make package/feeds/mariadb/mariadb/{clean,prepare,compile} package/index V=s -j9
 
 # or
 make V=s
@@ -79,7 +102,7 @@ make V=s
 ## Bulding info
 
 This is based on:
-https://github.com/openwrt/packages/pull/4221 .
+https://github.com/openwrt/packages/pull/4221 and later https://github.com/openwrt/packages/pull/5851 .
 
 It will be in all of my [LEDE-INSOMNIA](https://pages.corifeus.com/lede-insomnia).
 
@@ -93,15 +116,35 @@ The defaults are ```/opt/var/lib/mysql``` and ```/opt/var/lib/mysql-tmp``` (auto
 
 Given that lots of small devices expect ```/var/lib/mysql``` in the ```ROM``` and you have a different setup, please do not use ```/var/lib/mysql```, otherwise you have to work on it more, but of course if you change the ```my.cnf``` and ```/etc/init.d/mariadb``` any setup can be configured at will. 
 
+
+# Based on
+
+https://github.com/openwrt/packages/pull/4221 (Mariadb 5.5)  
+and later   
+https://github.com/openwrt/packages/pull/5851 (Mariadb 10.1) / https://github.com/micmac1/packages/tree/mariadb/utils/mariadb
+
+## Lede vs OpenWrt
+
+https://github.com/openwrt/packages/pull/5851#issuecomment-379456277
+
 [//]: #@corifeus-footer
 
 ---
 
-[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v5.5.65-90 
+[**P3X-LEDE-MARIADB**](https://pages.corifeus.com/lede-mariadb) Build v10.1.226-263 
 
-[![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LFRV89WPRMMVE&lc=HU&item_name=Patrik%20Laszlo&item_number=patrikx3&currency_code=HUF&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted) 
+[![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) 
 
 
+## P3X Sponsors
+
+[IntelliJ - The most intelligent Java IDE](https://www.jetbrains.com)
+  
+[![JetBrains](https://cdn.corifeus.com/assets/svg/jetbrains-logo.svg)](https://www.jetbrains.com/) [![NoSQLBooster](https://cdn.corifeus.com/assets/png/nosqlbooster-70x70.png)](https://www.nosqlbooster.com/)
+
+[The Smartest IDE for MongoDB](https://www.nosqlbooster.com)
+  
+  
  
 
 [//]: #@corifeus-footer:end

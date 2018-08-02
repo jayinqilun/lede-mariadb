@@ -7,6 +7,7 @@ STOP=10
 SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 SERVICE_STOP_TIME=9
+PROG='/usr/bin/mysqld'
 
 DATA="/opt/var/lib/mysql"
 DATA_TMP="/opt/var/lib/mysql-tmp/"
@@ -34,8 +35,8 @@ check_dir_in_my_cnf() {
 }
 
 start() {
-    [ -d $DATA ] || mkdir -p $DATA
-    [ -d $DATA_TMP ] || mkdir -p $DATA_TMP
+    [ -d "$DATA" ] || mkdir -p $DATA
+    [ -d "$DATA_TMP" ] || mkdir -p $DATA_TMP
     rm -rf /var/lib/mysql || true
     ln -s $DATA /var/lib/mysql || true
     check_dir_in_my_cnf datadir
@@ -44,13 +45,15 @@ start() {
 	return 1
     fi
     local datadir=$(sed -n -e "s/^[[:space:]]*datadir[[:space:]]*=[[:space:]\"']*\([^[:space:]\"']*\)[[:space:]\"']*/\1/p" /etc/mysql/my.cnf)
-    if [ ! -f "$datadir/mysql/tables_priv.MYD" ]; then
-	error "Error: I didn't detect a privileges table, you might need to $init_command_msg"
-	return 1
-    fi
-    service_start /usr/bin/mysqld
-}
 
+	[ -f "$datadir/mysql/tables_priv.MYD" ] || {
+		logger -s "[ERROR] can not detect privileges table, you might need to"
+		logger -s "run 'mysql_install_db --force' to initialize the system tables"
+		return 1
+	}
+
+    service_start "$PROG"
+}
 stop() {
-    service_stop /usr/bin/mysqld
+	service_stop "$PROG"
 }
